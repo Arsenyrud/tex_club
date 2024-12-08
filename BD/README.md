@@ -89,7 +89,7 @@
 
 
 
-overleaf settings
+## Overleaf settings
 Compiler: pdfLaTeX
 TeX Live version: 2024
 Main document: main.tex
