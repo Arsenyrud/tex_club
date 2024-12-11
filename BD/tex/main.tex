@@ -11,7 +11,19 @@
 \usepackage{verbatim}
 \usepackage{listings}
 \usepackage{xcolor} % Для настройки цветов (опционально)
+\usepackage{amsmath}           % Для расширенных возможностей математического форматирования
+\usepackage{tabularx}          % Для автоматического управления шириной столбцов
+\usepackage{booktabs}          % Для улучшенных горизонтальных линий
+\usepackage{array}             % Для расширенных возможностей работы со столбцами
+\usepackage{graphicx}          % Для масштабирования таблицы
+\usepackage{makecell}          % Для многострочных ячеек
+\usepackage{adjustbox}         % Для масштабирования таблицы
+\usepackage{multicol}             % Для много столбцов
+\usepackage{enumitem}             % Для настройки списков
 
+
+
+% Настройки для списков
 \lstset{
     language=SQL,                  % Язык программирования
     basicstyle=\ttfamily\small,    % Размер и стиль шрифта
@@ -24,7 +36,19 @@
     stepnumber=1,                  % Шаг нумерации
     showstringspaces=false          % Не показывать пробелы в строках
 }
-\geometry{left=3cm, right=3cm, top=2cm, bottom=2cm}
+
+% Настройки полей страницы
+\geometry{left=1cm, right=0.5cm, top=1cm, bottom=1.5cm}
+
+% Уменьшение размера заголовков \section
+\usepackage{titlesec}
+\titleformat{\section}[block]{\normalfont\medium\bfseries}{\thesection}{1em}{}
+
+% Увеличение размера обычного текста
+\renewcommand{\normalsize}{\fontsize{16}{14}\selectfont}
+
+% Уменьшение межстрочного интервала
+\linespread{0.7}
 
 % Определение окружений для теорем, определений и лемм
 \newtheorem{definition}{Определение}
@@ -79,7 +103,96 @@
     -latex
 ]
 
+
+
 \begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+        
+    \begin{multicols}{3}
+        \begin{enumerate}[label=\arabic*.]
+            \item Файл, файловая система. Особенности организации устройств внешней памяти на магнитных дисках. Структуры файлов на дисках. Классификация файловых систем. Основные подходы к защите файловых систем.
+            \item Возможности и области применения файловых систем. Сравнение ФС и СУБД по обеспечению требований со стороны информационных систем: согласованность данных, языки запросов, восстановление согласованного состояния после сбоев, реальный режим мультидоступа.
+            \item СУБД. Основные функции СУБД. Типовая организация современной СУБД.
+            \item Классификация СУБД. Файл-серверные, клиент-серверные и встраиваемые СУБД.
+            \item Классификация СУБД. СУБД, хранящие данные во внешней памяти, и СУБД, сохраняющие данные в основной памяти (in-memory).
+            \item Классификация СУБД. Однопроцессорные, параллельные с общей памятью, параллельные с общими дисками и параллельные без использования общих ресурсов СУБД.
+            \item Ранние дореляционные подходы к организации баз данных.
+            \item Базовые понятия реляционной модели данных. Ключи. Неопределенные значения. Фундаментальные свойства отношений. Ссылочная целостность в реляционной модели и способы ее поддержания.
+            \item Реляционная алгебра Кодда. Перечислить все операции. Приоритет операций.
+            \item Реляционная алгебра Кодда. Теоретико-множественные операции. Совместимость отношений по объединению и по расширенному декартовому произведению.
+            \item Реляционная алгебра Кодда. Специальные реляционные операции.
+            \item Реляционная алгебра А. Базовые операции подробно с примерами.
+            \item Полнота алгебры А. Определение операций алгебры Кодда через алгебру А.
+            \item Реляционная алгебра А. Перечислить базовые операции. Избыточность алгебры А. Сокращение набора операций алгебры А.
+            \item Реляционное исчисление: исчисление кортежей и доменов. Сравнение механизмов реляционной алгебры и реляционного исчисления на примере формулирования запроса.
+            \item Исчисление кортежей. Кортежная переменная. Правильно построенная формула. Пример. Способ реализации.
+            \item Исчисление кортежей. Кванторы, свободные и связанные переменные. Целевые списки. Выражения реляционного исчисления.
+            \item Исчисление доменов. Основные отличия от исчисления кортежей.
+            \item Классический подход к проектированию баз данных на основе нормализации. Нормальная форма. Общие свойства нормальных форм. Полный список нормальных форм. Нормализация в OLAP и OLTP системах.
+            \item Функциональная зависимость. Пример отношения и его функциональных зависимостей. Связь функциональных зависимостей и ограничений целостности. Тривиальная FD. Транзитивная FD.
+            \item Замыкание множества функциональных зависимостей. Аксиомы Армстронга (с доказательством). Расширенный набор правил вывода Дейта (с выводом).
+            \item Замыкание множества атрибутов на множестве FD. Алгоритм построения. Пример. Польза. Суперключ отношения, его связь с замыканием и FD.
+            \item Покрытие множества FD, эквивалентные покрытия, минимальное множество FD. Примеры. Алгоритм построения минимального эквивалентного множества. Минимальное покрытие множества функциональных зависимостей.
+            \item Корректные и некорректные декомпозиции отношений. Теорема Хита (с доказательством). Минимально зависимые атрибуты.
+            \item Минимальные функциональные зависимости. Аномалии, возникающие из-за наличия неминимальных FD. Пример декомпозиции, решающей проблему. 2НФ.
+            \item Транзитивные функциональные зависимости. Аномалии, возникающие из-за наличия транзитивных FD. Пример декомпозиции, решающей проблему. 3НФ.
+            \item Независимые проекции отношений. Теорема Риссанена (без доказательства). Атомарные отношения.
+            \item Перекрывающиеся возможные ключи, аномалии обновления, возникающие из-за их наличия. Нормальная форма Бойса-Кодда.
+            \item Многозначные зависимости. Двойственность многозначной зависимости. Лемма Фейджина. Теорема Фейджина (с доказательством).
+            \item Многозначные зависимости. Аномалии, возникающие из-за наличия MVD. Пример декомпозиции, решающей проблему (на чем основывается). 4НФ. Нетривиальная и тривиальная многозначные зависимости.
+            \item N-декомпозируемые отношения. Пример декомпозиций. Зависимость проекции/соединения.
+            \item Аномалии, возникающие из-за наличия зависимости проекции/соединения. Пример декомпозиции, решающей проблему. 5НФ.
+            \item Организация внешней памяти в SQL-ориентированных базах данных, хранение таблиц по строкам и столбцам. Понятие tid-а.
+            \item Индексы в базе данных. Индексы на основе B-деревьев.
+            \item Индексы в базе данных. Индексы на основе хэширования: расширяемое хэширование.
+            \item Индексы в базе данных. Индексы на основе хэширования: линейное хэширование.
+            \item Этапы проектирования баз данных. Ограниченность реляционной модели при использовании в проектировании. Понятие концептуальной (семантической, инфологической) модели. Достоинства концептуальных моделей. Средства автоматизации проектирования баз данных.
+            \item ER-модель. Основные понятия. Представление на диаграммах сущностей, атрибутов и связей. Примеры. Уникальные идентификаторы типов сущностей. Нормальные формы ER-моделей.
+            \item Получение реляционной схемы из ER-диаграммы. Пошаговый алгоритм (без учета наследования и взаимно исключающих связей).
+            \item Наследование сущностей в ER-модели. Примеры. Отображение диаграммы с наследованием в реляционную схему.
+            \item Взаимно исключающие связи в ER-модели. Примеры. Отображение диаграммы со взаимно исключающими связями в реляционную схему.
+            \item Диаграммы классов языка UML. Основные понятия. Отображение классов, стереотипов, комментариев и ограничений на диаграммах. Примеры.
+            \item Диаграммы классов языка UML. Категории связей и их отображение на диаграмме. Примеры.
+            \item Язык OCL. Инварианты классов. Основные типы данных и выражения OCL.
+            \item Получение реляционной схемы из диаграммы классов UML. Основные проблемы и рекомендации.
+            \item Язык баз данных SQL. Возможности и структура языка SQL. Основные черты модели данных SQL и ее отличия от реляционной модели. Критика SQL.
+            \item Основные типы данных языка SQL (без учета объектных расширений). Преобразования типов данных.
+            \item Средства работы с доменами в SQL.
+            \item Средства определения, изменения и отмены определения базовых таблиц в SQL.
+            \item Иерархия ограничений в SQL. Средства определения и отмены общих ограничений (ограничений БД).
+            \item Базовые средства манипулирования данными в языке SQL.
+            \item Понятие триггера. Механизм триггеров в SQL. Типы триггеров и их выполнение.
+            \item Общая структура оператора выборки в SQL и схема его выполнения.
+            \item Представляемые и порождаемые таблицы в SQL. Агрегатные и кванторные функции.
+            \item Предикаты в логических выражениях языка SQL.
+            \item Поддержка авторизации доступа к данным в SQL. Объекты и привилегии. Пользователи и роли.
+            \item Передача и аннулирование привилегий и ролей в SQL.
+            \item Транзакции. Свойства ACID. Инициация и завершение транзакций в SQL. Проверка ограничений целостности и ее связь с механизмом транзакций. Точки сохранения.
+            \item Сериализация транзакций: виды конфликтов транзакций и порождаемые ими феномены поведения транзакций. Уровни изоляции транзакций в SQL.
+            \item Сериализация транзакций: сериальный план. Основные подходы к сериализации. Двухфазный протокол синхронизационных блокировок.
+            \item Сериализация транзакций: гранулированные и предикатные блокировки.
+            \item Синхронизационные тупики, способы их обнаружения и разрушения.
+            \item Сериализация транзакций на основе временных меток.
+            \item Версионный вариант алгоритма временных меток.
+            \item Версионный вариант двухфазного протокола синхронизационных блокировок.
+            \item Версионно-блокировочный протокол сериализации транзакций для поддержки только читающих транзакций.
+            \item Ситуации, требующие восстановления базы данных и общие принципы восстановления информации. Понятие журнала и основные подходы к его ведению. Индивидуальные откаты транзакций.
+            \item Управление буферным пулом основной памяти. Буферизация (кеширование) блоков базы данных и журнала.
+            \item Физическая синхронизация. Протокол 2PL для физической синхронизации и борьба с физическими синхронизационными тупиками.
+            \item Протокол Write Ahead Log и его связь с буферизацией.
+            \item Физически согласованное состояние базы данных. Схема восстановления базы данных после мягкого сбоя до точки физической согласованности.
+            \item Способы восстановления физически согласованного состояния (теневой механизм и журнализация постраничных изменений).
+            \item Восстановление базы данных после жесткого сбоя. Архивация базы данных и журнала.
+            \item Объектно-ориентированная модель данных. Ее структурная, манипуляционная и целостная части.
+            \item Объектные расширения языка SQL. Возможные подходы к объектно-реляционному отображению без использования объектных расширений SQL.
+            \item Истинная реляционная модель данных. Ее структурная, манипуляционная и целостная части.
+        \end{enumerate}
+    \end{multicols}
+    
+\end{titlepage}
 
 % Начало вопросов
 \section{Файл, файловая система. Особенности организации устройств внешней памяти на магнитных дисках. Структуры файлов на дисках. Классификация файловых систем. Основные подходы к защите файловых систем.}
@@ -898,7 +1011,9 @@ R (атрибут1: переменная1, атрибут2: переменная
 \textbf{Транзитивная FD} возникает, когда $A \rightarrow B$ и $B \rightarrow C$, следовательно, $A \rightarrow C$.
 
 \begin{itemize}
-    \item \textbf{Пример}: Если $СЛУ\_N \rightarrow СЛУ\_УРОВ$ и $СЛУ\_УРОВ \rightarrow СЛУ\_ЗАРП$, тогда $СЛУ\_N \rightarrow СЛУ\_ЗАРП$.
+    \item \textbf{Пример}: Если $\text{СЛУ\_N} \rightarrow \text{СЛУ\_УРОВ}$ и $\text{СЛУ\_УРОВ} \rightarrow \text{СЛУ\_ЗАРП}$, тогда $\text{СЛУ\_N} \rightarrow \text{СЛУ\_ЗАРП}$.
+
+
     \item \textbf{Последствия}: Создает косвенные зависимости между атрибутами, что может приводить к избыточности данных и аномалиям обновления.
 \end{itemize}
 
@@ -1001,10 +1116,13 @@ R (атрибут1: переменная1, атрибут2: переменная
         CD \rightarrow F &\Rightarrow Z[2] = \{A, E, D, C, F\}
     \end{align*}
     \item \textbf{Третий проход}:
-    \begin{align*}
-        Z[2] &= \{A, E, D, C, F\} \\
-        \text{Никаких новых FD не добавляется} \Rightarrow Z^+ = \{A, E, D, C, F\}
-    \end{align*}
+
+        
+   \begin{align*}
+    Z[2] &= \{A, E, D, C, F\} \\
+    \text{Никаких новых FD не добавляется} &\Rightarrow Z^+ = \{A, E, D, C, F\}
+\end{align*}
+    
 \end{itemize}
 
 \subsection{Польза замыкания атрибутов}
@@ -1218,10 +1336,10 @@ R (атрибут1: переменная1, атрибут2: переменная
 
 \subsection{Пример и декомпозиция в BCNF}
 
-Отношение \textbf{СЛУЖ\_ПРО\_ЗАДАН1} с перекрывающимися ключами \{\textbf{СЛУ\_НОМ, ПРО\_НОМ}\} и \{\textbf{СЛУ\_ИМЯ, ПРО\_НОМ}\} декомпозируется на:
+Отношение \textbf{СЛУЖ\_ПРО\_ЗАДАН1} с перекрывающимися \\ ключами \textbf{\{СЛУ\_НОМ, ПРО\_НОМ}\} и \{\textbf{СЛУ\_ИМЯ, ПРО\_НОМ}\} декомпозируется на:
 \begin{itemize}
     \item \textbf{СЛУЖ\_НОМ\_ИМЯ} \{СЛУ\_НОМ, СЛУ\_ИМЯ\}
-    \item \textbf{СЛУЖ\_ИМЯ\_ПРО\_ЗАДАН} \{СЛУ\_ИМЯ, ПРО\_НОМ, СЛУ\_ЗАДАН\}
+    \item \textbf{СЛУЖ\_ИМЯ\_ПРО\_ЗАДАН} \{СЛУ\_ИМЯ, \\ ПРО\_НОМ, СЛУ\_ЗАДАН\}
 \end{itemize}
 Эта декомпозиция устраняет аномалии обновления и приводит отношения к \textbf{BCNF}.
 
@@ -1257,7 +1375,7 @@ R (атрибут1: переменная1, атрибут2: переменная
 Если \(\mathbf{A \rightarrow\rightarrow B | C}\), то любое значение \textbf{r} можно восстановить через естественное соединение проекций \(\{A, B\}\) и \(\{A, C\}\). Это следует из определения многозначной зависимости и свойств естественного соединения.
 
 \textbf{Необходимость:}  
-Если \(\mathbf{r}\) равно соединению проекций \(\{A, B\}\) и \(\{A, C\}\), то должны выполняться \(\mathbf{A \rightarrow\rightarrow B}\) и \(\mathbf{A \rightarrow\rightarrow C}\), что подтверждает \(\mathbf{A \rightarrow\rightarrow B | C}\). Это противоречие возникает, если хотя бы один из необходимых кортежей отсутствует, что невозможно при выполнении равенства \(\mathbf{r = r_1 \text{ NATURAL JOIN } r_2}\).
+Если \(\mathbf{r}\) равно соединению проекций \(\{A, B\}\) и \(\{A, C\}\), то должны выполняться \(\mathbf{A \rightarrow\rightarrow B}\) и \(\mathbf{A \rightarrow\rightarrow C}\), что подтверждает \\ \(\mathbf{A \rightarrow\rightarrow B | C}\). Это противоречие возникает, если хотя бы один из необходимых кортежей отсутствует, что невозможно при выполнении равенства \(\mathbf{r = r_1 \text{ NATURAL JOIN } r_2}\).
     
 \section{Многозначные зависимости. Аномалии, возникающие из-за наличия MVD. Пример декомпозиции, решающей проблему (на чем основывается). 4НФ. Нетривиальная и тривиальная многозначные зависимости.}
 
@@ -1286,7 +1404,7 @@ R (атрибут1: переменная1, атрибут2: переменная
 
 \subsection{Основание декомпозиции}
 
-Декомпозиция основана на устранении многозначных зависимостей \(\mathbf{\text{СЛУ\_НОМ} \rightarrow \text{ПРО\_НОМ}}\) и \(\mathbf{\text{СЛУ\_НОМ} \rightarrow \text{СЛУ\_ЗАДАН}}\), приводящих отношение к \textbf{Четвертой нормальной форме (4НФ)}.
+Декомпозиция основана на устранении многозначных зависимостей \\(\mathbf{\text{СЛУ\_НОМ} \rightarrow \text{ПРО\_НОМ}}\) и \(\mathbf{\text{СЛУ\_НОМ} \rightarrow \text{СЛУ\_ЗАДАН}}\), приводящих отношение к \textbf{Четвертой нормальной форме (4НФ)}.
 
 \textbf{4НФ (Четвертая нормальная форма)}:
 
@@ -1982,9 +2100,10 @@ FD:
         \end{center}
         
         \textbf{Воссоздание супертипа:}
-        \[
-        \text{PROJECT B1} \{a_1, \ldots, a_m\} \text{ UNION } \ldots \text{ UNION } \text{PROJECT Bn} \{a_1, \ldots, a_m\}
-        \]
+        \begin{align*}
+    \text{PROJECT B1} \{a_1, \ldots, a_m\} \; &\text{UNION} \; \ldots \; \text{UNION} \\
+    \text{PROJECT Bn} \{a_1, \ldots, a_m\}
+\end{align*}
         
         \textbf{Достоинства:}
         \begin{enumerate}
@@ -2002,7 +2121,7 @@ FD:
     
     \item \textbf{Представление взаимно исключающих связей:}
     
-    \begin{enumerate}[label=7\alph*.]
+    \begin{enumerate}
         \item \textbf{Преобразование модели со взаимно исключающими связями в модель с наследованием} (далее см. пункт 6). Для моделей, где связи «один-ко-многим» являются взаимоисключающими со стороны сущности со степенью роли «многие», возможно применение еще двух способов преобразования.
         
         \item \textbf{Общее хранение внешних ключей}
@@ -2118,22 +2237,30 @@ FD:
     \item \textbf{Введение подтипов}
     
     \begin{center}
-        \begin{tikzpicture}[node distance=2cm, auto]
-            \node[entity] (airplane) {САМОЛЕТ};
-            \node[entity] (pilot) [below left of=airplane] {ПИЛОТ};
-            \node[entity] (repair) [below right of=airplane] {АРП НЕИСПРАВНЫЙ};
-            \node[entity] (fixed) [below of=airplane, node distance=3cm] {ИСПРАВНЫЙ};
-            
-            \draw[relationship] (airplane) -- (pilot);
-            \draw[relationship] (airplane) -- (repair);
-            \draw[relationship] (airplane) -- (fixed);
-        \end{tikzpicture}
-    \end{center}
+    \begin{tikzpicture}[auto]
+        % Узел САМОЛЕТ
+        \node[entity] (airplane) {САМОЛЕТ};
+        
+        % Узел ПИЛОТ, смещённый ниже и левее на 3 см вертикально и 2 см горизонтально
+        \node[entity] (pilot) [below left=3cm and 2cm of airplane] {ПИЛОТ};
+        
+        % Узел АРП НЕИСПРАВНЫЙ, смещённый ниже и правее на 3 см вертикально и 2 см горизонтально
+        \node[entity] (repair) [below right=3cm and 2cm of airplane] {АРП НЕИСПРАВНЫЙ};
+        
+        % Узел ИСПРАВНЫЙ, смещённый ниже на 4 см вертикально
+        \node[entity] (fixed) [below=4cm of airplane] {ИСПРАВНЫЙ};
+        
+        % Рисуем связи между узлами
+        \draw[relationship] (airplane) -- (pilot);
+        \draw[relationship] (airplane) -- (repair);
+        \draw[relationship] (airplane) -- (fixed);
+    \end{tikzpicture}
+\end{center}
     
     \item \textbf{Введение общего супертипа}
     
     \begin{center}
-        \begin{tikzpicture}[node distance=2cm, auto]
+        \begin{tikzpicture}[node distance=6cm, auto]
             \node[entity] (bankAccount) {БАНКОВСКИЙ СЧЕТ};
             \node[entity] (physPerson) [below left of=bankAccount] {ФИЗ. ЛИЦО};
             \node[entity] (jurPerson) [below right of=bankAccount] {ЮР. ЛИЦО};
@@ -2581,6 +2708,7 @@ SQL-ориентированные коммерческие СУБД:
 \end{itemize}
 
 Стандартизация языка SQL  
+\\
 \begin{tabular}{c|c|l}
 Поколение & Год & Стандарт \& Изменения \\ \hline
 1 & 1986 & SQL-86 Первоначальная версия \\ 
@@ -2809,7 +2937,7 @@ ALTER TABLE table_name action
 
 Возможны следующие действия:  
 \begin{itemize}
-    \item \texttt{ADD COLUMN column\_name \{ datatype | domain \} [DEFAULT value] [constraint\_list]}
+    \item \texttt{ADD COLUMN column\_name \{ datatype | domain \} \ [DEFAULT value] [constraint\_list]}
     \item \texttt{ALTER COLUMN column\_name SET DEFAULT value}
     \item \texttt{ALTER COLUMN column\_name DROP DEFAULT}
     \item \texttt{DROP COLUMN column\_name \{ RESTRICT | CASCADE \}}
@@ -3002,8 +3130,8 @@ DELETE FROM EMPLOYEE WHERE ...;
     \item Момент срабатывания: \texttt{BEFORE} или \texttt{AFTER}
     \item Тип инициирующего оператора: \texttt{INSERT}, \texttt{UPDATE [OF column\_list]} или \texttt{DELETE}
     \item Имя предметной таблицы: \texttt{ON table\_name [REFERENCING OLD \{ROW | TABLE\} AS name NEW \{ROW | TABLE\} AS name]}
-    \item Количество срабатываний триггера: \texttt{FOR EACH ROW} или \texttt{FOR EACH STATEMENT}
-    \item Дополнительное условие применимости триггера: \texttt{WHEN (logical\_expression)}
+    \item Количество срабатываний триггера: \\ \texttt{FOR EACH ROW} или \texttt{FOR EACH STATEMENT}
+    \item Дополнительное условие применимости триггера: \\ \texttt{WHEN (logical\_expression)}
     \item Тело триггера: одиночный оператор или процедура на языке \texttt{SQL/PSM}
 \end{enumerate}
 
@@ -3094,8 +3222,8 @@ FROM table_reference_list
 
 \subsection{Представления (виртуальные таблицы)}
 
-\paragraph{Определение представления:}  
 \texttt{CREATE VIEW view\_name [column\_name\_list] AS query\_expression}  
+\\
 Явное указание имен столбцов представляемой таблицы требуется, если их невозможно вывести из выражения запроса.
 
 \paragraph{Пример: создать представление с данными о начальниках отделов}  
@@ -3106,7 +3234,7 @@ FROM EMPLOYEE E, DEPARTMENT D WHERE E.EMP_ID = D.DEPT_MANAGER;
 \end{lstlisting}
 
 \paragraph{Отмена представления:}  
-\texttt{DROP VIEW view\_name \{ RESTRICT | CASCADE \}}
+\texttt{DROP VIEW view\_name \{RESTRICT|CASCADE\}}
 
 Из представлений можно выполнять \texttt{SELECT}. В общем случае они не модифицируемы (без рассмотрения \texttt{WITH CHECK OPTION}).
 
@@ -3170,7 +3298,7 @@ NULL, а при наличии DISTINCT – и дубликаты. Затем п
 \begin{enumerate}
     \item Совместимость типов операндов
     \item Равенство степеней строк-операндов ($|RX| = |RY|$ или $|RX| = |RT|$, $RT \in T$)
-    \item Существование отрицательной формы предиката: \texttt{NOT pred = NOT(pred)} – имеются исключения из данного правила
+    \item Существование отрицательной формы предиката: \texttt{NOT pred = \\ NOT(pred)} – имеются исключения из данного правила
 \end{enumerate}
 
 \subsection{Предикат сравнения и предикат \texttt{BETWEEN}}
@@ -3205,6 +3333,7 @@ WHERE E1.EMP_SALARY BETWEEN
 Квантифицированное сравнение строчного значения с табличным запросом:
 
 \[
+\resizebox{\textwidth}{!}{
 \begin{aligned}
 \texttt{FALSE} &\leftrightarrow \exists RT \in T: (R_X \texttt{ op } RT) = \texttt{FALSE} \\
 R_X \texttt{ op } \texttt{ALL } T &= \texttt{TRUE} \leftrightarrow \forall RT \in T \Rightarrow (R_X \texttt{ op } RT) = \texttt{TRUE} \lor T \equiv \emptyset \\
@@ -3214,6 +3343,7 @@ R_X \texttt{ op } \texttt{SOME } T &= \texttt{FALSE} \leftrightarrow \forall RT 
 \texttt{UNKNOWN} &\leftrightarrow \forall RT \in T \Rightarrow (R_X \texttt{ op } RT) \neq \texttt{TRUE} \land \exists RT \in T: (R_X \texttt{ op } RT) = \texttt{UNKNOWN} \\
 R_X \texttt{ op } \texttt{ANY } T &\equiv R_X \texttt{ op } \texttt{SOME } T
 \end{aligned}
+}
 \]
 
 \textbf{Пример:}\\
@@ -3234,16 +3364,25 @@ WHERE DEPT_ID = 12
 
 Проверяет, являются ли неопределенными значения всех элементов строки операнда: \texttt{RX IS NULL}.
 
-\[
-\begin{array}{ll}
-\texttt{RX IS NULL} & \texttt{RX IS NOT NULL} \\
-|RX|=1, s=\texttt{NULL} & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
-|RX|=1, s$\neq$\texttt{NULL} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
-|RX|>1, $\forall s \in RX \Rightarrow s=\texttt{NULL}$ & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
-|RX|>1, $\forall i \neq j \exists s_i \in RX : s_i=\texttt{NULL} \land \exists s_j \in RX : s_j \neq \texttt{NULL}$ & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} \\
-|RX|>1, $\forall s \in RX \Rightarrow s \neq \texttt{NULL}$ & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
-\end{array}
-\]
+\begin{center}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}X|c|c|c|c|}
+\hline
+\textbf{Условие} & \multicolumn{2}{c|}{\texttt{RX IS NULL}} & \multicolumn{2}{c|}{\texttt{RX IS NOT NULL}} \\
+\hline
+& \texttt{TRUE} & \texttt{FALSE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\textbar RX\textbar=1, s=\texttt{NULL} & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
+\hline
+\textbar RX\textbar=1, s$\neq$\texttt{NULL} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\textbar RX\textbar>1, $\forall s \in RX \Rightarrow s=\texttt{NULL}$ & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
+\hline
+\textbar RX\textbar>1, $\forall i \neq j \exists s_i \in RX : s_i=\texttt{NULL} \land \exists s_j \in RX : s_j \neq \texttt{NULL}$ & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} \\
+\hline
+\textbar RX\textbar>1, $\forall s \in RX \Rightarrow s \neq \texttt{NULL}$ & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\end{tabularx}
+\end{center}
 
 \textbf{Пример:}\\
 Найти номера и имена служащих, не задействованных в проектах:
@@ -3257,16 +3396,19 @@ WHERE PRO_ID IS NULL
 
 Проверяет факт вхождения скалярного значения или строки в указанное множество: \texttt{s IN (s1, s2, …, sn)} или \texttt{RX IN T}
 
+\begin{flushleft}
 \[
 \begin{aligned}
-\texttt{TRUE} &\leftrightarrow \exists RT \in T: (RX = RT) = \texttt{TRUE} \\
+\texttt{TRUE} &\leftrightarrow \exists RT \in T: (RX = RT) = \texttt{TRUE} \\[6pt]
 RX \texttt{ IN } T &= 
 \begin{cases}
 \texttt{FALSE} &\leftrightarrow \forall RT \in T \Rightarrow (RX = RT) = \texttt{FALSE} \lor T \equiv \emptyset \\
-\texttt{UNKNOWN} &\leftrightarrow \forall RT \in T \Rightarrow (RX = RT) \neq \texttt{TRUE} \land \exists RT \in T: (RX = RT) = \texttt{UNKNOWN}
+\texttt{UNKNOWN} &\leftrightarrow \forall RT \in T \Rightarrow (RX = RT) \neq \texttt{TRUE} \land \exists RT \in T: \\
+&\quad (RX = RT) = \texttt{UNKNOWN}
 \end{cases}
 \end{aligned}
 \]
+\end{flushleft}
 
 \textbf{Пример:}\\
 Найти номера сотрудников, не являющихся начальниками отделов и получающих зарплату, размер которой равен размеру зарплаты какого-либо начальника отдела:
@@ -3325,13 +3467,10 @@ WHERE PRO_TITLE LIKE '%software%'
 \textbf{Пример:}\\
 Найти названия проектов, которые будут выполняться в организации в одно и то же время:
 \begin{lstlisting}
-SELECT P1.PRO_ID, P2.PRO_ID 
-FROM PROJECT P1, PROJECT P2 
-WHERE P1.PRO_ID <> P2.PRO_ID 
-  AND NOT (
-    (P1.PRO_SDATE, P1.PRO_DURATION) IS DISTINCT FROM 
-    (P2.PRO_SDATE, P2.PRO_DURATION)
-  );
+SELECT PRO_TITTLE 
+FROM PROJECT 
+WHERE (PRO_SDATE, PRO_DURATION)
+OVERLAPS (CURRENT_DATE, INTERVAL '1' YEAR)
 \end{lstlisting}
 
 \subsection{Предикат \texttt{EXISTS}}
@@ -3368,13 +3507,19 @@ WHERE EXISTS (
 
 Позволяет проверить, являются ли две строки дубликатами.
 
+\begin{flushleft}
 \[
 \texttt{RX IS DISTINCT FROM RY} = 
 \begin{cases}
-\texttt{FALSE} &\leftrightarrow \forall i=1, |RX| \Rightarrow (s_{Xi} = s_{Yi}) = \texttt{TRUE} \lor s_{Xi} = \texttt{NULL} \land s_{Yi} = \texttt{NULL},\ s_{Xi} \in RX,\ s_{Yi} \in RY \\
-\texttt{TRUE} &\leftrightarrow \exists i: (s_{Xi} = s_{Yi}) = \texttt{FALSE} \lor s_{Xi} = \texttt{NULL} \land s_{Yi} \neq \texttt{NULL} \lor s_{Xi} \neq \texttt{NULL} \land s_{Yi} = \texttt{NULL}
+\texttt{FALSE} &\leftrightarrow \forall i=1, |RX| \Rightarrow (s_{Xi} = s_{Yi}) = \texttt{TRUE} \\
+&\quad \lor (s_{Xi} = \texttt{NULL} \land s_{Yi} = \texttt{NULL}),\ \\
+&\quad s_{Xi} \in RX,\ s_{Yi} \in RY \\[6pt]
+\texttt{TRUE} &\leftrightarrow \exists i: (s_{Xi} = s_{Yi}) = \texttt{FALSE} \\
+&\quad \lor (s_{Xi} = \texttt{NULL} \land s_{Yi} \neq \texttt{NULL}) \\
+&\quad \lor (s_{Xi} \neq \texttt{NULL} \land s_{Yi} = \texttt{NULL})
 \end{cases}
 \]
+\end{flushleft}
 
 Отрицательная форма предиката (\texttt{IS NOT DISTINCT FROM}) в языке SQL отсутствует.
 
@@ -3413,15 +3558,15 @@ WHERE UNIQUE( SELECT EMP_SALARY
 Условие соответствия строчного значения результату подзапроса:
 
 \[
-RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ SIMPLE } T = \texttt{TRUE} \leftrightarrow \exists s \in RX : s = \texttt{NULL} \lor \exists RT \in T : (RX = RT) = \texttt{TRUE}
+RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ SIMPLE } T = \texttt{TRUE} \leftrightarrow \exists s \] \ \[ \in RX : s = \texttt{NULL} \lor \exists RT \in T : (RX = RT) = \texttt{TRUE}
 \]
-
+\\
 \[
-RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ PARTIAL } T = \texttt{TRUE} \leftrightarrow \forall s \in RX \Rightarrow s = \texttt{NULL} \lor \exists RT \in T : \forall s_i \neq \texttt{NULL} \Rightarrow (s_i = s_{Ti}) = \texttt{TRUE},\ s_i \in RX,\ s_{Ti} \in RT
+RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ PARTIAL } T = \texttt{TRUE} \leftrightarrow \forall s \in RX \Rightarrow s = \texttt{NULL} \lor \exists RT \in T : \] \ \[\forall s_i \neq \texttt{NULL} \Rightarrow (s_i = s_{Ti}) = \texttt{TRUE},\ s_i \in RX,\ s_{Ti} \in RT
 \]
-
+\\
 \[
-RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ FULL } T = \texttt{TRUE} \leftrightarrow \forall s \in RX \Rightarrow s = \texttt{NULL} \lor \forall s \in RX \Rightarrow s \neq \texttt{NULL} \land \exists RT \in T : (RX = RT) = \texttt{TRUE}
+RX \texttt{ MATCH } [\texttt{UNIQUE}] \texttt{ FULL } T = \texttt{TRUE} \leftrightarrow \forall s \in RX \Rightarrow \] \ \[ s = \texttt{NULL} \lor \forall s \in RX \Rightarrow s \neq \texttt{NULL} \land \exists RT \in T : (RX = RT) = \texttt{TRUE}
 \]
 
 Если указано \texttt{UNIQUE}, то дополнительно проверяется, является ли найденная строка RT уникальной в T (\texttt{FALSE}, если неуникальная).
@@ -3518,7 +3663,8 @@ DROP ROLE role_name
 
 \textbf{Синтаксис:}
 \begin{verbatim}
-GRANT { ALL PRIVILEGES | privilege_list } ON object_name TO { PUBLIC | authID_list }
+GRANT { ALL PRIVILEGES | privilege_list } ON object_name TO 
+{ PUBLIC | authID_list }
     [ WITH GRANT OPTION ]
     [ GRANTED BY { CURRENT_USER | CURRENT_ROLE } ]
 \end{verbatim}
@@ -3554,7 +3700,8 @@ GRANT role_name_list TO { PUBLIC | authID_list }
 
 \textbf{Синтаксис:}
 \begin{verbatim}
-REVOKE [ GRANT OPTION FOR ] privilege_list ON object_name FROM { PUBLIC | authID_list }
+REVOKE [ GRANT OPTION FOR ] privilege_list ON object_name 
+FROM { PUBLIC | authID_list }
     [ GRANTED BY { CURRENT_USER | CURRENT_ROLE } ]
     { RESTRICT | CASCADE }
 \end{verbatim}
@@ -3574,7 +3721,8 @@ REVOKE [ GRANT OPTION FOR ] privilege_list ON object_name FROM { PUBLIC | authID
 
 \textbf{Синтаксис:}
 \begin{verbatim}
-REVOKE [ ADMIN OPTION FOR ] role_name_list FROM { PUBLIC | authID_list }
+REVOKE [ ADMIN OPTION FOR ] role_name_list 
+FROM { PUBLIC | authID_list }
     [ GRANTED BY { CURRENT_USER | CURRENT_ROLE } ]
     { RESTRICT | CASCADE }
 \end{verbatim}
@@ -3682,7 +3830,8 @@ INITIALLY { DEFERRED | IMMEDIATE } [ [NOT] DEFERRABLE ]
 
 Режим проверки ограничений, которые специфицированы с указанием ключевого слова \texttt{DEFERRABLE}, можно изменить в ходе выполнения транзакции с помощью оператора:
 \begin{verbatim}
-SET CONSTRAINTS { ALL | constraint_name_list } { DEFERRED | IMMEDIATE }
+SET CONSTRAINTS { ALL | constraint_name_list } 
+{ DEFERRED | IMMEDIATE }
 \end{verbatim}
 Если в списке имен будет явно указано хотя бы одно ограничение, определенное как \texttt{NOT DEFERRABLE}, оператор будет отвергнут (ALL – сокращенная форма задания списка имен всех ограничений целостности, определенных в БД с указанием ключевого слова \texttt{DEFERRABLE}).
 
@@ -3801,21 +3950,30 @@ COMMIT
 
 На уровне изоляции \texttt{READ UNCOMMITTED} могут проявляться все три феномена. Одновременное задание \texttt{READ UNCOMMITTED} и режима доступа \texttt{READ WRITE} не допускается (чтобы не допустить возможности зафиксировать «грязные» данные).
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        \textbf{Уровень изоляции} & \textbf{Грязное чтение} & \textbf{Неповторяющееся чтение} & \textbf{Фантомы} \\
-        \hline
-        \texttt{READ UNCOMMITTED} & \textbf{Да} & \textbf{Да} & \textbf{Да} \\
-        \texttt{READ COMMITTED} & + & + & - \\
-        \texttt{REPEATABLE READ} & + & + & + \\
-        \texttt{SERIALIZABLE} & - & - & - \\
-        \hline
-    \end{tabular}
-    \caption{Феномены на разных уровнях изоляции транзакций}
+\begin{table}[h]
+\centering
+\caption{Таблица Условий и Результатов}
+\small % Уменьшение размера шрифта внутри таблицы
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabularx}{0.85\textwidth}{|>{\raggedright\arraybackslash}X|c|c|c|c|}
+\hline
+\textbf{Условие} & \multicolumn{2}{c|}{\texttt{RX IS NULL}} & \multicolumn{2}{c|}{\texttt{RX IS NOT NULL}} \\
+\hline
+& \texttt{TRUE} & \texttt{FALSE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\makecell{\textbar RX\textbar=1, s=\texttt{NULL}} & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
+\hline
+\makecell{\textbar RX\textbar=1, s$\neq$\text{\texttt{NULL}}} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\makecell{\textbar RX\textbar>1, \\ $\forall s \in RX \Rightarrow s=\text{\texttt{NULL}}$} & \texttt{TRUE} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} \\
+\hline
+\makecell{\textbar RX\textbar>1, \\ $\forall i \neq j \exists s_i \in RX : s_i=\text{\texttt{NULL}} \land \exists s_j \in RX : s_j \neq \text{\texttt{NULL}}$} & \texttt{FALSE} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} \\
+\hline
+\makecell{\textbar RX\textbar>1, \\ $\forall s \in RX \Rightarrow s \neq \text{\texttt{NULL}}$} & \texttt{FALSE} & \texttt{TRUE} & \texttt{TRUE} & \texttt{FALSE} \\
+\hline
+\end{tabularx}
+\end{adjustbox}
 \end{table}
-
 \begin{itemize}
     \item \texttt{TRUE} – \textbf{Да}
     \item \texttt{FALSE} – \textbf{Нет}
@@ -4267,7 +4425,7 @@ COMMIT
           & RL(o) & WL(o) & CL(o) \\
         \hline
         RL(o) & да & да & нет \\
-        WL(o) & да(o) & нет & нет \\
+        WL(o) & да & нет & нет \\
         CL(o) & нет & нет & нет \\
         \hline
     \end{tabular}
